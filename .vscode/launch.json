@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/Data Structure/Linked List/Singly Linked List/Practice.js"
+            "program": "${workspaceFolder}/Data Structure/Stack/Practice.js"
         }
     ]
 }

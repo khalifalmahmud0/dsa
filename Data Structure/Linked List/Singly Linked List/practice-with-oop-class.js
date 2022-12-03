@@ -7,6 +7,7 @@ class singlyLinkedList {
     isEmpty() {
         return this.length === 0;
     }
+
     push(value) {
         let newNode = {
             value: value,
@@ -28,7 +29,7 @@ list.push(5);
 list.push(10);
 list.push(15);
 list.push(20);
-console.log('list', list.next);
+console.log('list', list);
 
 
 // console.log(JSON.stringify(list, null, 2));

@@ -31,6 +31,24 @@ class singlyLinkedList {
         }
     }
     // insertNodeAnywhereUsingIndex
+    insertNodeAnywhereUsingIndex(index, value) {
+        let node = this.singleNode(value);
+        let indexPreviousValue = this.getAnyNodeValueUsingIndex(index - 1);
+        let indexValue = this.getAnyNodeValueUsingIndex(index);
+        let indexNextValue = this.getAnyNodeValueUsingIndex(index + 1);
+        console.log(indexPreviousValue, indexValue, indexNextValue);
+        if (index === 0) {
+            this.head = node;
+            this.head.next = indexValue;
+        } else if (index >= this.length) {
+            this.tail = this.tail.next = node;
+        } else {
+            let newNode = indexPreviousValue.next = node;
+            newNode.next = indexValue;
+        }
+        // console.log(`${indexValue.value} removed`);
+        this.length++;
+    }
     // insertFirst
     insertFirst(value) {
         let node = this.singleNode(value);
@@ -52,19 +70,32 @@ class singlyLinkedList {
      * ::::::::::::::::::::::::: READ :::::::::::::::::::::::::
      * 
      * getLastData -
-     * getAnyNodeValueUsingIndex
+     * getAnyNodeValueUsingIndex -
      * getFirstData -
      * showAllData -
      * 
      */
     // getLastData
     getLastData() {
-        return this.tail.value;
+        console.log(this.tail.value);
     }
     // getAnyNodeValueUsingIndex
+    getAnyNodeValueUsingIndex(index) {
+        let currentHead = this.head;
+        let indexCount = 0;
+        while (currentHead) {
+            if (indexCount === index) {
+                // console.log(currentHead.value);
+                return currentHead;
+            }
+            currentHead = currentHead.next;
+            indexCount++;
+        }
+    }
     // getFirstData
     getFirstData() {
-        return this.head.value;
+        // return this.head.value;
+        console.log(this.head.value);
     }
     // showAllData
     showAllData() {
@@ -85,7 +116,7 @@ class singlyLinkedList {
      * ::::::::::::::::::::::::: UPDATE :::::::::::::::::::::::::
      * 
      * updateLastNode -
-     * updateAnyNodeValueUsingIndex
+     * updateAnyNodeValueUsingIndex - 
      * updateFirstNode -
      * 
      */
@@ -95,7 +126,27 @@ class singlyLinkedList {
         this.tail.value = value;
         return `Last value was ${currentLastNode} and now last value is ${value}`;
     }
+    // updateAnyNodeValueUsingIndex
+    updateAnyNodeValueUsingIndex(index, value) {
+        if (index > this.length) {
+            return `No Index Found For Update`;
+        } else {
+            let currentHead = this.head;
+            let indexCount = 0;
+            while (currentHead) {
+                if (indexCount === index) {
+                    let temporaryHead = currentHead.value;
+                    currentHead.value = value;
+                    return `at index ${index} value was ${temporaryHead} ,
+                now value is ${value}`;
+                }
 
+                currentHead = currentHead.next;
+                indexCount++;
+
+            }
+        }
+    }
     // updateFirstNode
     updateFirstNode(value) {
         let currentFirstNode = this.head.value;
@@ -106,11 +157,51 @@ class singlyLinkedList {
     /**
      * ::::::::::::::::::::::::: DELETE :::::::::::::::::::::::::
      * 
-     * deleteLast
-     * removeAnyNodeValueUsingIndex
+     * deleteLast -
+     * removeAnyNodeValueUsingIndex -
      * deleteFirst -
      * 
      */
+    //  deleteLast
+    deleteLast() {
+        if (this.isEmpty()) {
+            return `No Node Exist For POP`;
+        }
+        else if (this.length === 1) {
+            this.head = this.tail = null;
+            this.length = 0;
+        }
+        else {
+            let currentHead = this.head;
+            while (currentHead) {
+                if (currentHead.next === this.tail) {
+                    this.tail = currentHead;
+                    this.tail.next = null;
+                    this.length--;
+                    break;
+                }
+                currentHead = currentHead.next;
+            }
+        }
+    }
+    // removeAnyNodeValueUsingIndex
+    removeAnyNodeValueUsingIndex(index) {
+        let indexPreviousValue = this.getAnyNodeValueUsingIndex(index - 1);
+        let indexValue = this.getAnyNodeValueUsingIndex(index);
+        let indexNextValue = this.getAnyNodeValueUsingIndex(index + 1);
+        if (!indexPreviousValue) {
+            this.head = this.head.next;
+        } else if (!indexNextValue) {
+            indexPreviousValue.next = null;
+            this.tail = indexPreviousValue;
+        }
+        else {
+            indexPreviousValue.next = indexNextValue;
+        }
+        console.log(`${indexValue.value} removed`);
+        this.length--;
+    }
+    // deleteFirst
     deleteFirst() {
         if (this.head) {
             let previousHead = this.head.value;
@@ -128,7 +219,7 @@ class singlyLinkedList {
      * clearAllNodes -
      * totalNodes -
      * swapTwoNodes
-     * searchUsingNodeValue
+     * searchUsingNodeValue -
      * 
      */
     // isEmpty
@@ -144,26 +235,42 @@ class singlyLinkedList {
     totalNodes() {
         return this.length;
     }
+    // swapTwoNodes
+    swapTwoNodes(index1, index2 = undefined) {
+        if (!index2) {
+            index2 = index1 * 2;
+        }
+        let index1value = this.getAnyNodeValueUsingIndex(index1 - 1);
+        let temporaryIndex1 = index1value.value;
+        let index2value = this.getAnyNodeValueUsingIndex(index2 - 1);
+        let temporaryIndex2 = index2value.value;
+        index1value.value = temporaryIndex2;
+        index2value.value = temporaryIndex1;
+
+
+    }
+    // searchUsingNodeValue
+    searchUsingNodeValue(value) {
+        let currentHead = this.head;
+        let itemCount = 0;
+        while (currentHead) {
+            if (currentHead.value === value) {
+                itemCount++;
+
+            }
+            currentHead = currentHead.next;
+        }
+        return `In this Node ${value} exists ${itemCount} times`;
+    }
 
 
 }
 
 let list = new singlyLinkedList;
-list.insertLast(1);
-list.insertLast(2);
-list.insertLast(3);
-list.insertLast(4);
-list.insertLast(5);
-list.insertLast(6);
-list.insertLast(7);
-list.insertLast(8);
-// list.updateFirstNode(98);
-// list.insertFirst(999);
-// list.updateFirstNode('Allah is almighty');
-// list.updateLastNode('Finish');
-// list.deleteFirst();
-// console.log(list.deleteFirst())
-// console.log(list.deleteFirst())
-// console.log(list.deleteFirst())
-// console.log(list.deleteFirst())
+
+for (i = 1; i <= 5; i++) {
+    list.insertLast(i);
+}
+
+list.swapTwoNodes(2);
 console.log(list.showAllData());

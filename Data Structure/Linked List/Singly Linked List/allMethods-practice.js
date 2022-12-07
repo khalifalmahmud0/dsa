@@ -65,7 +65,6 @@ class singlyLinkedList {
             return `${value} inserted in the First Position of the list`;
         }
     }
-
     /**
      * ::::::::::::::::::::::::: READ :::::::::::::::::::::::::
      * 
@@ -111,7 +110,6 @@ class singlyLinkedList {
             return `List Empty Now`;
         }
     }
-
     /**
      * ::::::::::::::::::::::::: UPDATE :::::::::::::::::::::::::
      * 
@@ -140,10 +138,8 @@ class singlyLinkedList {
                     return `at index ${index} value was ${temporaryHead} ,
                 now value is ${value}`;
                 }
-
                 currentHead = currentHead.next;
                 indexCount++;
-
             }
         }
     }
@@ -153,7 +149,6 @@ class singlyLinkedList {
         this.head.value = value;
         return `First value was ${currentFirstNode} and now First value is ${value}`;
     }
-
     /**
      * ::::::::::::::::::::::::: DELETE :::::::::::::::::::::::::
      * 
@@ -236,18 +231,10 @@ class singlyLinkedList {
         return this.length;
     }
     // swapTwoNodes
-    swapTwoNodes(index1, index2 = undefined) {
-        if (!index2) {
-            index2 = index1 * 2;
-        }
-        let index1value = this.getAnyNodeValueUsingIndex(index1 - 1);
-        let temporaryIndex1 = index1value.value;
-        let index2value = this.getAnyNodeValueUsingIndex(index2 - 1);
-        let temporaryIndex2 = index2value.value;
-        index1value.value = temporaryIndex2;
-        index2value.value = temporaryIndex1;
-
-
+    swapTwoNodes(index1, index2) {
+        let index1value = this.getAnyNodeValueUsingIndex(index1);
+        let index2value = this.getAnyNodeValueUsingIndex(index2);
+        [index1value.value, index2value.value] = [index2value.value, index1value.value];
     }
     // searchUsingNodeValue
     searchUsingNodeValue(value) {
@@ -256,21 +243,15 @@ class singlyLinkedList {
         while (currentHead) {
             if (currentHead.value === value) {
                 itemCount++;
-
             }
             currentHead = currentHead.next;
         }
         return `In this Node ${value} exists ${itemCount} times`;
     }
-
-
 }
-
 let list = new singlyLinkedList;
-
 for (i = 1; i <= 5; i++) {
     list.insertLast(i);
 }
-
-list.swapTwoNodes(2);
+list.swapTwoNodes(2, 4);
 console.log(list.showAllData());

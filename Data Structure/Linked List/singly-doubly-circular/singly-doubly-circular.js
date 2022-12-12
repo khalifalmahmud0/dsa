@@ -8,6 +8,9 @@ class singly {
         this.head = this.tail = null;
         this.length = 0;
     }
+    totalNode(){
+        return this.length;
+    }
     newNode(value) {
         return {
             value: value,
@@ -96,10 +99,10 @@ class singly {
         }
     }
     updateAnyNodeValueUsingIndex(index, value) {
-        if (!this.isEmpty()) {
+        if (!this.isEmpty() && index < this.length) { 
             let indexNodeValue = this.getAnyNodeValueUsingIndex(index);
             indexNodeValue.value = value;
-        }
+        } 
     }
     updateHead(value) {
         if (!this.isEmpty()) {
@@ -122,7 +125,7 @@ class singly {
         }
     }
     swapTwoNodes(index1, index2) {
-        if (!this.isEmpty()) {
+        if (!this.isEmpty() && index1 <= this.length && index2 <= this.length) {
             let index1value = this.getAnyNodeValueUsingIndex(index1);
             let index2value = this.getAnyNodeValueUsingIndex(index2);
             [index1value.value, index2value.value] = [index2value.value, index1value.value];
@@ -149,7 +152,7 @@ class singly {
         this.length--;
     }
     deleteAnyNodeValueUsingIndex(index) {
-        if (!this.isEmpty()) {
+        if (!this.isEmpty() && index <= this.length) {
             let indexPrevNode = this.getAnyNodeValueUsingIndex(index - 1);
             let indexNextNode = this.getAnyNodeValueUsingIndex(index + 1);
             [indexPrevNode.next] = [indexNextNode];
@@ -169,36 +172,6 @@ class singly {
         this.length--;
     }
 }
-let sList = new singly;
-console.log(`===== Singly Linked List Console Start =====`);
-/**
- * 
- * 
- */
-// for (let i = 1; i <= 5; i++) {
-//     sList.insertLast(i);
-//     sList.insertFirst(i);
-// }
-sList.updateTail(50);
-sList.updateAnyNodeValueUsingIndex(1, 40);
-sList.updateHead(50);
-sList.swapTwoNodes(0, 1);
-sList.deleteLast();
-sList.deleteFirst();
-sList.deleteAnyNodeValueUsingIndex(2);
-sList.insertNodeAnywhereUsingIndex(2, 330);
-// sList.clearAllNodes();
-console.log(`Full List`, sList);
-console.log(`List Array`, sList.showAllData())
-console.log(`Last Data`, sList.getLastData());
-console.log(`get Any Node Value Using Index`, sList.getAnyNodeValueUsingIndex(2));
-console.log(`First Data`, sList.getFirstData());
-console.log(`Searching Using Node value`, sList.searchUsingNodeValue(50));
-/**
- * 
- * 
- */
-console.log(`===== Singly Linked List Console End ===== \n\n\n`);
 /**
 =====================================================================
 ==========Doubly Linked List=========================================
@@ -208,6 +181,9 @@ class doubly {
     constructor() {
         this.head = this.tail = null;
         this.length = 0;
+    }
+    totalNode(){
+        return this.length;
     }
     newNode(value) {
         return {
@@ -301,7 +277,7 @@ class doubly {
         }
     }
     updateAnyNodeValueUsingIndex(index, value) {
-        if (!this.isEmpty()) {
+        if (!this.isEmpty() && index < this.length) {
             let indexNodeValue = this.getAnyNodeValueUsingIndex(index);
             indexNodeValue.value = value;
         }
@@ -325,7 +301,7 @@ class doubly {
         return itemCount;
     }
     swapTwoNodes(index1, index2) {
-        if (!this.isEmpty()) {
+        if (!this.isEmpty() && index1 <= this.length && index2 <= this.length) {
             let index1value = this.getAnyNodeValueUsingIndex(index1);
             let index2value = this.getAnyNodeValueUsingIndex(index2);
             [index1value.value, index2value.value] = [index2value.value, index1value.value];
@@ -345,7 +321,7 @@ class doubly {
         this.length--;
     }
     deleteAnyNodeValueUsingIndex(index) {
-        if (!this.isEmpty()) {
+        if (!this.isEmpty() && index < this.length) {
             let indexPrevNode = this.getAnyNodeValueUsingIndex(index - 1);
             let indexNextNode = this.getAnyNodeValueUsingIndex(index + 1);
             [indexPrevNode.next, indexNextNode.prev] = [indexNextNode, indexPrevNode];
@@ -366,36 +342,6 @@ class doubly {
         this.length--;
     }
 }
-let dList = new doubly;
-console.log(`===== Doubly Linked List Console Start =====`);
-/**
- * 
- * 
- */
-// for (let i = 1; i <= 5; i++) {
-//     dList.insertLast(i);
-//     dList.insertFirst(i);
-// }
-dList.updateTail(50);
-dList.updateAnyNodeValueUsingIndex(1, 40);
-dList.updateHead(50);
-dList.swapTwoNodes(0, 1);
-dList.deleteLast();
-dList.deleteFirst();
-dList.deleteAnyNodeValueUsingIndex(2);
-dList.insertNodeAnywhereUsingIndex(2, 1);
-// dList.clearAllNodes();
-console.log(`Full List`, dList);
-console.log(`List Array`, dList.showAllData());
-console.log(`Last Data`, dList.getLastData());
-console.log(`get Any Node Value Using Index`, dList.getAnyNodeValueUsingIndex(2));
-console.log(`First Data`, dList.getFirstData());
-console.log(`Searching Using Node value`, sList.searchUsingNodeValue(50));
-/**
- * 
- * 
- */
-console.log(`===== Doubly Linked List Console End ===== \n\n\n`);
 /**
 =====================================================================
 ==========Singly Circular Linked List================================
@@ -405,6 +351,9 @@ class singlyCircular {
     constructor() {
         this.head = this.tail = null;
         this.length = 0;
+    }
+    totalNode(){
+        return this.length;
     }
     newNode(value) {
         return {
@@ -496,7 +445,7 @@ class singlyCircular {
         }
     }
     updateAnyNodeValueUsingIndex(index, value) {
-        if (!this.isEmpty()) {
+        if (!this.isEmpty() && index < this.length) {
             let indexNodeValue = this.getAnyNodeValueUsingIndex(index);
             indexNodeValue.value = value;
         }
@@ -520,7 +469,7 @@ class singlyCircular {
         return itemCount;
     }
     swapTwoNodes(index1, index2) {
-        if (!this.isEmpty()) {
+        if (!this.isEmpty() && index1 <= this.length && index2 <= this.length) {
             let index1value = this.getAnyNodeValueUsingIndex(index1);
             let index2value = this.getAnyNodeValueUsingIndex(index2);
             [index1value.value, index2value.value] = [index2value.value, index1value.value];
@@ -547,7 +496,7 @@ class singlyCircular {
         this.length--;
     }
     deleteAnyNodeValueUsingIndex(index) {
-        if (!this.isEmpty()) {
+        if (!this.isEmpty() && index <= this.length) {
             let indexPrevNode = this.getAnyNodeValueUsingIndex(index - 1);
             let indexNextNode = this.getAnyNodeValueUsingIndex(index + 1);
             [indexPrevNode.next] = [indexNextNode];
@@ -568,41 +517,6 @@ class singlyCircular {
         this.length--;
     }
 }
-let scList = new singlyCircular;
-console.log(`===== Singly Circular Linked List Console Start =====`);
-/**
- * 
- * 
- */
-// for (let i = 1; i <= 5; i++) {
-//     scList.insertLast(i);
-//     scList.insertFirst(i);
-// }
-scList.updateTail(50);
-scList.updateAnyNodeValueUsingIndex(1, 40);
-scList.updateHead(50);
-scList.swapTwoNodes(0, 1);
-scList.deleteLast();
-scList.deleteFirst();
-scList.deleteAnyNodeValueUsingIndex(2);
-scList.insertNodeAnywhereUsingIndex(2, 1);
-scList.insertNodeAnywhereUsingIndex(2, 2);
-scList.insertNodeAnywhereUsingIndex(2, 3);
-scList.insertNodeAnywhereUsingIndex(2, 4);
-scList.insertNodeAnywhereUsingIndex(2, 5);
-scList.insertNodeAnywhereUsingIndex(2, 6);
-// scList.clearAllNodes();
-console.log(`Full List`, scList);
-console.log(`List Array`, scList.showAllData());
-console.log(`Last Data`, scList.getLastData());
-console.log(`get Any Node Value Using Index`, scList.getAnyNodeValueUsingIndex(4));
-console.log(`First Data`, scList.getFirstData());
-console.log(`Searching Using Node value`, sList.searchUsingNodeValue(50));
-/**
- * 
- * 
- */
-console.log(`===== Singly Circular Linked List Console End ===== \n\n\n`);
 /**
 =====================================================================
 ==========Doubly Circular Linked List================================
@@ -612,6 +526,9 @@ class doublyCircular {
     constructor() {
         this.head = this.tail = null;
         this.length = 0;
+    }
+    totalNode(){
+        return this.length;
     }
     newNode(value) {
         return {
@@ -718,7 +635,7 @@ class doublyCircular {
         }
     }
     updateAnyNodeValueUsingIndex(index, value) {
-        if (!this.isEmpty()) {
+        if (!this.isEmpty() && index < this.length) {
             let indexNodeValue = this.getAnyNodeValueUsingIndex(index);
             indexNodeValue.value = value;
         }
@@ -742,7 +659,7 @@ class doublyCircular {
         return itemCount;
     }
     swapTwoNodes(index1, index2) {
-        if (!this.isEmpty()) {
+        if (!this.isEmpty() && index1 <= this.length && index2 <= this.length) {
             let index1value = this.getAnyNodeValueUsingIndex(index1);
             let index2value = this.getAnyNodeValueUsingIndex(index2);
             [index1value.value, index2value.value] = [index2value.value, index1value.value];
@@ -763,7 +680,7 @@ class doublyCircular {
         this.length--;
     }
     deleteAnyNodeValueUsingIndex(index) {
-        if (!this.isEmpty()) {
+        if (!this.isEmpty() && index < this.length) {
             let indexPrevNode = this.getAnyNodeValueUsingIndex(index - 1);
             let indexNextNode = this.getAnyNodeValueUsingIndex(index + 1);
             [indexPrevNode.next, indexNextNode.prev] = [indexNextNode, indexPrevNode];
@@ -785,39 +702,49 @@ class doublyCircular {
         this.length--;
     }
 }
-let dcList = new doublyCircular;
-console.log(`===== Doubly Circular Linked List Console Start =====`);
-/**
- * 
- * 
- */
-// for (let i = 1; i <= 5; i++) {
-//     dcList.insertLast(i);
-//     dcList.insertFirst(i);
-// }
-dcList.updateTail(50);
-dcList.updateAnyNodeValueUsingIndex(1, 40);
-dcList.updateHead(50);
-dcList.swapTwoNodes(0, 1);
-dcList.deleteLast();
-dcList.deleteFirst();
-dcList.deleteAnyNodeValueUsingIndex(2);
-dcList.insertNodeAnywhereUsingIndex(2, 1);
-dcList.insertNodeAnywhereUsingIndex(2, 2);
-dcList.insertNodeAnywhereUsingIndex(2, 3);
-dcList.insertNodeAnywhereUsingIndex(2, 4);
-dcList.insertNodeAnywhereUsingIndex(2, 5);
-dcList.insertNodeAnywhereUsingIndex(2, 6);
-dcList.insertNodeAnywhereUsingIndex(2, 7);
-// dcList.clearAllNodes();
-console.log(`Full List`, dcList);
-console.log(`List Array`, dcList.showAllData());
-console.log(`Last Data`, dcList.getLastData());
-console.log(`get Any Node Value Using Index`, dcList.getAnyNodeValueUsingIndex(7));
-console.log(`First Data`, dcList.getFirstData());
-console.log(`Searching Using Node value`, sList.searchUsingNodeValue(50));
-/**
- * 
- * 
- */
-console.log(`===== Doubly Circular Linked List Console End =====`);
+
+//  :::::::::::::::::::::::::::::Testing:::::::::::::::::::::::::::::::
+
+let singlyLinkedList = new singly;
+let doublyLinkedList = new doubly;
+let singlyCircularLinkedList = new singlyCircular;
+let doublyCircularLinkedList = new doublyCircular;
+let classList = [
+    ['Singly Linked List', singlyLinkedList],
+    ['Doubly Linked List', doublyLinkedList],
+    ['Singly Circular Linked List', singlyCircularLinkedList],
+    ['Doubly Circular Linked List', doublyCircularLinkedList]
+];
+for (let singleClass in classList) {
+    let linkedListname = classList[singleClass][0];
+    let linkedListClass = classList[singleClass][1];
+   for(j=0; j<=1; j++){
+     //
+     console.log(`J VALUE IS ${j}`)
+     console.log(`===== ${linkedListname} Console Start =====`);
+     console.log(linkedListClass.totalNode());
+     for (let i = 1; i <= j; i++) {
+         linkedListClass.insertLast(i);
+         linkedListClass.insertFirst(i*10);
+     }
+     linkedListClass.insertNodeAnywhereUsingIndex(5,0);
+     linkedListClass.updateTail(`Last Node Updated`);
+     linkedListClass.updateAnyNodeValueUsingIndex(5,`Updated Using Index`);
+     linkedListClass.updateHead(`First Node Updated`);
+     linkedListClass.deleteLast();
+     linkedListClass.deleteFirst();
+     linkedListClass.deleteAnyNodeValueUsingIndex(4);
+     // linkedListClass.clearAllNodes();
+     console.log(`Is Empty?`,linkedListClass.isEmpty());
+     console.log(`Last Node`,linkedListClass.getLastData());
+     console.log(`Get Data Using Index`,linkedListClass.getAnyNodeValueUsingIndex(5));
+     console.log(`First Node`,linkedListClass.getFirstData());
+     console.log(`Search Using Node Value`,linkedListClass.searchUsingNodeValue(30));
+     console.log(`Swap Two Nodes`,linkedListClass.swapTwoNodes(3,5));
+     console.log(`Full List`, linkedListClass);
+     console.log(`List Array`, linkedListClass.showAllData());
+     console.log(linkedListClass.totalNode());
+     console.log(`===== ${linkedListname} Console End ===== \n\n`);
+     //
+   }
+}

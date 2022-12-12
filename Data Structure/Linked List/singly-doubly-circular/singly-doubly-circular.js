@@ -8,7 +8,7 @@ class singly {
         this.head = this.tail = null;
         this.length = 0;
     }
-    totalNode(){
+    totalNode() {
         return this.length;
     }
     newNode(value) {
@@ -99,10 +99,10 @@ class singly {
         }
     }
     updateAnyNodeValueUsingIndex(index, value) {
-        if (!this.isEmpty() && index < this.length) { 
+        if (!this.isEmpty() && index < this.length) {
             let indexNodeValue = this.getAnyNodeValueUsingIndex(index);
             indexNodeValue.value = value;
-        } 
+        }
     }
     updateHead(value) {
         if (!this.isEmpty()) {
@@ -182,7 +182,7 @@ class doubly {
         this.head = this.tail = null;
         this.length = 0;
     }
-    totalNode(){
+    totalNode() {
         return this.length;
     }
     newNode(value) {
@@ -352,7 +352,7 @@ class singlyCircular {
         this.head = this.tail = null;
         this.length = 0;
     }
-    totalNode(){
+    totalNode() {
         return this.length;
     }
     newNode(value) {
@@ -527,7 +527,7 @@ class doublyCircular {
         this.head = this.tail = null;
         this.length = 0;
     }
-    totalNode(){
+    totalNode() {
         return this.length;
     }
     newNode(value) {
@@ -702,9 +702,7 @@ class doublyCircular {
         this.length--;
     }
 }
-
 //  :::::::::::::::::::::::::::::Testing:::::::::::::::::::::::::::::::
-
 let singlyLinkedList = new singly;
 let doublyLinkedList = new doubly;
 let singlyCircularLinkedList = new singlyCircular;
@@ -718,33 +716,32 @@ let classList = [
 for (let singleClass in classList) {
     let linkedListname = classList[singleClass][0];
     let linkedListClass = classList[singleClass][1];
-   for(j=0; j<=1; j++){
-     //
-     console.log(`J VALUE IS ${j}`)
-     console.log(`===== ${linkedListname} Console Start =====`);
-     console.log(linkedListClass.totalNode());
-     for (let i = 1; i <= j; i++) {
-         linkedListClass.insertLast(i);
-         linkedListClass.insertFirst(i*10);
-     }
-     linkedListClass.insertNodeAnywhereUsingIndex(5,0);
-     linkedListClass.updateTail(`Last Node Updated`);
-     linkedListClass.updateAnyNodeValueUsingIndex(5,`Updated Using Index`);
-     linkedListClass.updateHead(`First Node Updated`);
-     linkedListClass.deleteLast();
-     linkedListClass.deleteFirst();
-     linkedListClass.deleteAnyNodeValueUsingIndex(4);
-     // linkedListClass.clearAllNodes();
-     console.log(`Is Empty?`,linkedListClass.isEmpty());
-     console.log(`Last Node`,linkedListClass.getLastData());
-     console.log(`Get Data Using Index`,linkedListClass.getAnyNodeValueUsingIndex(5));
-     console.log(`First Node`,linkedListClass.getFirstData());
-     console.log(`Search Using Node Value`,linkedListClass.searchUsingNodeValue(30));
-     console.log(`Swap Two Nodes`,linkedListClass.swapTwoNodes(3,5));
-     console.log(`Full List`, linkedListClass);
-     console.log(`List Array`, linkedListClass.showAllData());
-     console.log(linkedListClass.totalNode());
-     console.log(`===== ${linkedListname} Console End ===== \n\n`);
-     //
-   }
+    for (j = 0; j <= 10; j++) {
+        //
+        console.log(`CURRENT VALUE IS ${j}`)
+        console.log(`===== ${linkedListname} Console Start =====`);
+        for (let i = 1; i <= j; i++) {
+            linkedListClass.insertLast(i);
+            linkedListClass.insertFirst(i * 10);
+        }
+        // linkedListClass.insertNodeAnywhereUsingIndex(5, 0);
+        // linkedListClass.updateTail(`Last Node Updated`);
+        // linkedListClass.updateAnyNodeValueUsingIndex(5, `Updated Using Index`);
+        // linkedListClass.updateHead(`First Node Updated`);
+        // linkedListClass.deleteLast();
+        // linkedListClass.deleteFirst();
+        // linkedListClass.deleteAnyNodeValueUsingIndex(4);
+        // // linkedListClass.clearAllNodes();
+        // console.log(`Is Empty?`, linkedListClass.isEmpty());
+        // console.log(`Last Node`, linkedListClass.getLastData());
+        // console.log(`Get Data Using Index`, linkedListClass.getAnyNodeValueUsingIndex(5));
+        // console.log(`First Node`, linkedListClass.getFirstData());
+        // console.log(`Search Using Node Value`, linkedListClass.searchUsingNodeValue(30));
+        // console.log(`Swap Two Nodes`, linkedListClass.swapTwoNodes(3, 5));
+        console.log(`Full List`, linkedListClass);
+        console.log(`List Array`, linkedListClass.showAllData());
+        console.log(linkedListClass.totalNode());
+        console.log(`===== ${linkedListname} Console End ===== \n\n`);
+        //
+    }
 }
